@@ -1,6 +1,6 @@
 datasource DS {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -17,6 +17,7 @@ model User {
   firstName String?
   lastName  String?
   type      String?
+  studentID Int
   student   Student[]
 }
 
@@ -26,20 +27,5 @@ model Student {
   firstName String?
   lastName  String?
   user    User
-}
-
-model Attendance {
-  id  Int   @id @default(autoincrement())
-  student Student
-  date    DateTime @default(now())
-  dayofweek   String
-  present   Int @default(0)
-  fifthday  Int @default(0)
-}
-
-model AttendanceHistory {
-  id  Int  @id @default(autoincrement())
-  attendance Attendance
-  expired   Int @default(0)
-  expirationDate  DateTime?  @default(now())
+  userId  Int
 }
